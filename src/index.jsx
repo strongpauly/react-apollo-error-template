@@ -13,10 +13,14 @@ import { Layout } from "./layout.jsx";
 import "./index.css";
 
 const ALL_PEOPLE = gql`
+  fragment nameFields on Person {
+    name
+  }
+
   query AllPeople {
     people {
       id
-      name
+      ...nameFields
     }
   }
 `;

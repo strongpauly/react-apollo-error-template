@@ -13,11 +13,13 @@ const staticDataLink = new ApolloLink((operation) => {
   return new Observable((observer) => {
     Promise.resolve().then(async () => {
       const { query, operationName, variables } = operation;
+      const source = print(query);
+      console.log(source)
       await delay(300);
       try {
         const result = await graphql({
           schema,
-          source: print(query),
+          source,
           variableValues: variables,
           operationName,
         });
